@@ -1,8 +1,17 @@
 import React from 'react';
 
-function App (){
+class App extends React.Component{
 
-  const criaComboBox = () =>{
+  state = {
+    nome: ''
+  }
+
+  modificarNome = (e) =>{
+      this.setState({
+        nome: e.target.value
+      });
+  }
+  criaComboBox = () =>{
     const opcoes = ["fulano", "ciclano"]
     const comboBoxOpcoes = opcoes.map( opcoes => <option>{opcoes}</option>)
     return(
@@ -11,15 +20,18 @@ function App (){
       </select>
     )
   }
-
-    const MeuComboBox = () => criaComboBox()
+  componentDidMount(){
+    console.log("execeutou");
+  }
+  render(){
+    const MeuComboBox = () => this.criaComboBox()
     return(
       <>
-          <input type="text" value={nome} onChange={this.modificarNome}/>
+          <input type="text" value={this.state.nome} onChange={this.modificarNome}/>
           <h1>{this.state.nome}</h1>
           <MeuComboBox/>
       </>
     )
-  
+  }
 }
 export default App;
